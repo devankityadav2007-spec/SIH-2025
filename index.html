@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Report Issues</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Language Selection Page -->
+    <div id="languageSelectionPage" class="page active">
+        <div class="language-container">
+            <div class="app-logo">
+                <i class="fas fa-city"></i>
+                <h1>CivicConnect</h1>
+                <p class="tagline">Connecting Citizens with Local Government</p>
+            </div>
+            
+            <div class="language-content">
+                <h2>Select Your Language / अपनी भाषा चुनें</h2>
+                <p>Choose your preferred language to continue / जारी रखने के लिए अपनी पसंदीदा भाषा चुनें</p>
+                
+                <div class="language-options">
+                    <button class="language-btn" onclick="selectLanguage('en')">
+                        <i class="fas fa-globe"></i>
+                        <span>English</span>
+                    </button>
+                    
+                    <button class="language-btn" onclick="selectLanguage('hi')">
+                        <i class="fas fa-globe"></i>
+                        <span>हिंदी (Hindi)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="page">
+        <div class="login-container">
+            <div class="app-logo">
+                <i class="fas fa-city"></i>
+                <h1>CivicConnect</h1>
+                <p class="tagline" data-en="Connecting Citizens with Local Government" data-hi="नागरिकों को स्थानीय सरकार से जोड़ना">Connecting Citizens with Local Government</p>
+            </div>
+            
+            <div class="login-content">
+                <div class="welcome-text">
+                    <h2 data-en="Welcome!" data-hi="स्वागत है!">Welcome!</h2>
+                    <p data-en="Report civic issues and help make your community better" data-hi="नागरिक समस्याओं की रिपोर्ट करें और अपने समुदाय को बेहतर बनाने में मदद करें">Report civic issues and help make your community better</p>
+                </div>
+                
+                <div class="login-buttons">
+                    <button class="btn btn-primary" onclick="showUserLogin()">
+                        <i class="fas fa-user"></i>
+                        <span data-en="Citizen Login" data-hi="नागरिक लॉगिन">Citizen Login</span>
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="showAdminLogin()">
+                        <i class="fas fa-user-shield"></i>
+                        <span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span>
+                    </button>
+                </div>
+                
+                <div class="features-preview">
+                    <div class="feature">
+                        <i class="fas fa-camera"></i>
+                        <span data-en="Photo Reports" data-hi="फोटो रिपोर्ट">Photo Reports</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-en="Location Tracking" data-hi="स्थान ट्रैकिंग">Location Tracking</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <span data-en="Real-time Updates" data-hi="रीयल-टाइम अपडेट">Real-time Updates</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Login Form -->
+    <div id="userLoginForm" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showLoginPage()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Citizen Login" data-hi="नागरिक लॉगिन">Citizen Login</h2>
+            </div>
+            
+            <form class="login-form" onsubmit="handleUserLogin(event)">
+                <div class="input-group">
+                    <label for="userPhone" data-en="Mobile Number" data-hi="मोबाइल नंबर">Mobile Number</label>
+                    <input type="tel" id="userPhone" data-en-placeholder="Enter your mobile number" data-hi-placeholder="अपना मोबाइल नंबर दर्ज करें" placeholder="Enter your mobile number" required>
+                    <i class="fas fa-phone input-icon"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="userPassword" data-en="Password" data-hi="पासवर्ड">Password</label>
+                    <input type="password" id="userPassword" data-en-placeholder="Enter your password" data-hi-placeholder="अपना पासवर्ड दर्ज करें" placeholder="Enter your password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span data-en="Login" data-hi="लॉगिन">Login</span>
+                </button>
+                
+                <div class="form-footer">
+                    <p><span data-en="New user?" data-hi="नए उपयोगकर्ता?">New user?</span> <a href="#" onclick="showUserRegistration()" data-en="Register here" data-hi="यहाँ पंजीकरण करें">Register here</a></p>
+                    <p><a href="#" onclick="showForgotPassword()" data-en="Forgot Password?" data-hi="पासवर्ड भूल गए?">Forgot Password?</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Login Form -->
+    <div id="adminLoginForm" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showLoginPage()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</h2>
+            </div>
+            
+            <form class="login-form" onsubmit="handleAdminLogin(event)">
+                <div class="input-group">
+                    <label for="adminId" data-en="Admin ID" data-hi="एडमिन आईडी">Admin ID</label>
+                    <input type="text" id="adminId" data-en-placeholder="Enter admin ID" data-hi-placeholder="एडमिन आईडी दर्ज करें" placeholder="Enter admin ID" required>
+                    <i class="fas fa-id-badge input-icon"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="adminPassword" data-en="Password" data-hi="पासवर्ड">Password</label>
+                    <input type="password" id="adminPassword" data-en-placeholder="Enter admin password" data-hi-placeholder="एडमिन पासवर्ड दर्ज करें" placeholder="Enter admin password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+                
+                <button type="submit" class="btn btn-secondary btn-full">
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Admin Dashboard -->
+    <div id="adminDashboardPage" class="page">
+        <div class="admin-dashboard-container">
+            <div class="admin-header">
+                <div class="admin-header-title">
+                    <i class="fas fa-user-shield"></i>
+                    <h3 data-en="Admin Dashboard" data-hi="एडमिन डैशबोर्ड">Admin Dashboard</h3>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> <span data-en="Logout" data-hi="लॉगआउट">Logout</span>
+                </button>
+            </div>
+            <div class="admin-content-grid">
+                <div class="admin-map-view">
+                    <h4 data-en="Live Complaint Map (Pimpri-Chinchwad)" data-hi="लाइव शिकायत मानचित्र (पिंपरी-चिंचवड)">Live Complaint Map (Pimpri-Chinchwad)</h4>
+                    <div class="map-container" id="mapContainer">
+                        <img src="https://page.gensparksite.com/v1/base64_upload/be7c2e6c43337421fec8b6249d7e2acf" alt="Pimpri-Chinchwad Map" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                </div>
+                <div class="admin-complaint-list">
+                    <div class="filter-section">
+                        <h4 data-en="Complaints Feed" data-hi="शिकायत फीड">Complaints Feed</h4>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" onclick="filterAdminComplaints('all')" data-en="All" data-hi="सभी">All</button>
+                            <button class="filter-btn" onclick="filterAdminComplaints('high')" data-en="High" data-hi="उच्च">High</button>
+                            <button class="filter-btn" onclick="filterAdminComplaints('medium')" data-en="Medium" data-hi="मध्यम">Medium</button>
+                            <button class="filter-btn" onclick="filterAdminComplaints('low')" data-en="Low" data-hi="निम्न">Low</button>
+                        </div>
+                    </div>
+                    <div class="complaint-feed" id="adminComplaintFeed">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div id="userDashboard" class="page">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="user-details">
+                        <h3 id="userName" data-en="Welcome, Citizen!" data-hi="स्वागत है, नागरिक!">Welcome, Citizen!</h3>
+                        <p id="userLocation">Pimpri-Chinchwad, Maharashtra</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            
+            <div class="dashboard-menu">
+                <div class="menu-item" onclick="showRegisterComplaint()">
+                    <div class="menu-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="menu-content">
+                        <h4 data-en="Register Complaint" data-hi="शिकायत दर्ज करें">Register Complaint</h4>
+                        <p data-en="Report a new civic issue" data-hi="नई नागरिक समस्या की रिपोर्ट करें">Report a new civic issue</p>
+                    </div>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </div>
+                
+                <div class="menu-item" onclick="showTrackComplaint()">
+                    <div class="menu-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="menu-content">
+                        <h4 data-en="Track Complaint" data-hi="शिकायत ट्रैक करें">Track Complaint</h4>
+                        <p data-en="Check status of your reports" data-hi="अपनी रिपोर्ट की स्थिति जांचें">Check status of your reports</p>
+                    </div>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </div>
+                
+                <div class="menu-item" onclick="showSendReminder()">
+                    <div class="menu-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="menu-content">
+                        <h4 data-en="Send Reminder" data-hi="अनुस्मारक भेजें">Send Reminder</h4>
+                        <p data-en="Follow up on pending issues" data-hi="लंबित मुद्दों का अनुसरण करें">Follow up on pending issues</p>
+                    </div>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </div>
+                
+                <div class="menu-item" onclick="showFeedback()">
+                    <div class="menu-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="menu-content">
+                        <h4 data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</h4>
+                        <p data-en="Rate and review services" data-hi="सेवाओं को रेट और समीक्षा करें">Rate and review services</p>
+                    </div>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </div>
+                
+                <div class="menu-item" onclick="showAboutUs()">
+                    <div class="menu-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="menu-content">
+                        <h4 data-en="About Us" data-hi="हमारे बारे में">About Us</h4>
+                        <p data-en="Learn more about CivicConnect" data-hi="CivicConnect के बारे में और जानें">Learn more about CivicConnect</p>
+                    </div>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </div>
+                
+                <div class="menu-item" onclick="showUserDetails()">
+                    <div class="menu-icon">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div class="menu-content">
+                        <h4 data-en="User Details" data-hi="उपयोगकर्ता विवरण">User Details</h4>
+                        <p data-en="Manage your profile" data-hi="अपनी प्रोफ़ाइल प्रबंधित करें">Manage your profile</p>
+                    </div>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Complaint Page -->
+    <div id="registerComplaintPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showUserDashboard()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Register Complaint" data-hi="शिकायत दर्ज करें">Register Complaint</h2>
+            </div>
+            
+            <form class="complaint-form" onsubmit="handleComplaintSubmission(event)">
+                <div class="step-indicator">
+                    <div class="step active" id="step1">1</div>
+                    <div class="step" id="step2">2</div>
+                    <div class="step" id="step3">3</div>
+                </div>
+                
+                <div class="form-step active" id="formStep1">
+                    <h3 data-en="Select Issue Category" data-hi="समस्या श्रेणी चुनें">Select Issue Category</h3>
+                    <div class="category-grid">
+                        <div class="category-item" onclick="selectCategory('pothole')">
+                            <i class="fas fa-road"></i>
+                            <span data-en="Potholes" data-hi="गड्ढे">Potholes</span>
+                        </div>
+                        <div class="category-item" onclick="selectCategory('streetlight')">
+                            <i class="fas fa-lightbulb"></i>
+                            <span data-en="Street Lights" data-hi="स्ट्रीट लाइट">Street Lights</span>
+                        </div>
+                        <div class="category-item" onclick="selectCategory('garbage')">
+                            <i class="fas fa-trash"></i>
+                            <span data-en="Garbage" data-hi="कचरा">Garbage</span>
+                        </div>
+                        <div class="category-item" onclick="selectCategory('water')">
+                            <i class="fas fa-tint"></i>
+                            <span data-en="Water Supply" data-hi="जल आपूर्ति">Water Supply</span>
+                        </div>
+                        <div class="category-item" onclick="selectCategory('drainage')">
+                            <i class="fas fa-water"></i>
+                            <span data-en="Drainage" data-hi="जल निकासी">Drainage</span>
+                        </div>
+                        <div class="category-item" onclick="selectCategory('other')">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <span data-en="Other" data-hi="अन्य">Other</span>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary btn-full" onclick="nextStep()" id="step1Next" disabled>
+                        <span data-en="Next" data-hi="आगे">Next</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="form-step" id="formStep2">
+                    <h3 data-en="Add Photo & Location" data-hi="फोटो और स्थान जोड़ें">Add Photo & Location</h3>
+                    
+                    <div class="photo-upload-section">
+                        <div class="photo-options">
+                            <button type="button" class="photo-option-btn" onclick="openCamera()">
+                                <i class="fas fa-camera"></i>
+                                <span data-en="Take Photo" data-hi="फोटो लें">Take Photo</span>
+                            </button>
+                            <button type="button" class="photo-option-btn" onclick="document.getElementById('photoInput').click()">
+                                <i class="fas fa-upload"></i>
+                                <span data-en="Upload Photo" data-hi="फोटो अपलोड करें">Upload Photo</span>
+                            </button>
+                        </div>
+                        
+                        <div class="photo-upload-area" id="photoUploadArea">
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <i class="fas fa-camera"></i>
+                                <p data-en="No photo selected" data-hi="कोई फोटो नहीं चुनी गई">No photo selected</p>
+                                <small data-en="Clear photo helps faster resolution" data-hi="स्पष्ट फोटो तेज़ समाधान में मदद करती है">Clear photo helps faster resolution</small>
+                            </div>
+                            <img id="previewImage" class="preview-image" style="display: none;">
+                            <canvas id="cameraCanvas" style="display: none;"></canvas>
+                            <video id="cameraVideo" style="display: none;" autoplay></video>
+                        </div>
+                        <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="display: none;">
+                        
+                        <div id="cameraControls" class="camera-controls" style="display: none;">
+                            <button type="button" class="btn btn-primary" onclick="capturePhoto()">
+                                <i class="fas fa-camera"></i>
+                                <span data-en="Capture" data-hi="कैप्चर करें">Capture</span>
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="closeCamera()">
+                                <i class="fas fa-times"></i>
+                                <span data-en="Cancel" data-hi="रद्द करें">Cancel</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="location-section">
+                        <div class="input-group">
+                            <label>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-en="Location" data-hi="स्थान">Location</span>
+                            </label>
+                            <div class="location-input">
+                                <input type="text" id="locationInput" data-en-placeholder="Detecting location..." data-hi-placeholder="स्थान का पता लगाया जा रहा है..." placeholder="Detecting location..." readonly>
+                                <button type="button" class="location-btn" onclick="getCurrentLocation()">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-outline" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> <span data-en="Back" data-hi="वापस">Back</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()" id="step2Next">
+                            <span data-en="Next" data-hi="आगे">Next</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-step" id="formStep3">
+                    <h3 data-en="Complaint Details" data-hi="शिकायत विवरण">Complaint Details</h3>
+                    
+                    <div class="input-group">
+                        <label for="complaintTitle" data-en="Issue Title *" data-hi="समस्या शीर्षक *">Issue Title *</label>
+                        <input type="text" id="complaintTitle" data-en-placeholder="Brief description of the issue" data-hi-placeholder="समस्या का संक्षिप्त विवरण" placeholder="Brief description of the issue" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="complaintDescription" data-en="Detailed Description" data-hi="विस्तृत विवरण">Detailed Description</label>
+                        <textarea id="complaintDescription" data-en-placeholder="Provide more details about the issue..." data-hi-placeholder="समस्या के बारे में और विवरण प्रदान करें..." placeholder="Provide more details about the issue..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="urgencyLevel" data-en="Urgency Level" data-hi="तात्कालिकता स्तर">Urgency Level</label>
+                        <select id="urgencyLevel">
+                            <option value="low" data-en="Low - Can wait" data-hi="कम - इंतजार कर सकता है">Low - Can wait</option>
+                            <option value="medium" selected data-en="Medium - Should be addressed soon" data-hi="मध्यम - जल्दी निपटाया जाना चाहिए">Medium - Should be addressed soon</option>
+                            <option value="high" data-en="High - Needs immediate attention" data-hi="उच्च - तत्काल ध्यान चाहिए">High - Needs immediate attention</option>
+                        </select>
+                    </div>
+                    
+                    <div class="contact-preference">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="allowContact" checked>
+                            <span class="checkmark"></span>
+                            <span data-en="Allow officials to contact me for clarification" data-hi="स्पष्टीकरण के लिए अधिकारियों को मुझसे संपर्क करने की अनुमति दें">Allow officials to contact me for clarification</span>
+                        </label>
+                    </div>
+                    
+                    <div class="step-buttons">
+                        <button type="button" class="btn btn-outline" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> <span data-en="Back" data-hi="वापस">Back</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-en="Submit Complaint" data-hi="शिकायत सबमिट करें">Submit Complaint</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Track Complaint Page -->
+    <div id="trackComplaintPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showUserDashboard()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Track Complaint" data-hi="शिकायत ट्रैक करें">Track Complaint</h2>
+            </div>
+            
+            <div class="track-content">
+                <div class="search-section">
+                    <div class="input-group">
+                        <input type="text" id="complaintSearch" data-en-placeholder="Enter complaint ID or search keywords" data-hi-placeholder="शिकायत आईडी या खोजशब्द दर्ज करें" placeholder="Enter complaint ID or search keywords">
+                        <button class="search-btn" onclick="searchComplaints()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="complaints-list" id="complaintsList">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaint Details Page -->
+    <div id="complaintDetailsPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showTrackComplaint()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Complaint Details" data-hi="शिकायत विवरण">Complaint Details</h2>
+            </div>
+            
+            <div class="details-content" id="complaintDetailsContent">
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Reminder Page -->
+    <div id="sendReminderPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showUserDashboard()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Send Reminder" data-hi="अनुस्मारक भेजें">Send Reminder</h2>
+            </div>
+            
+            <div class="reminder-content">
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p data-en="Send reminders for complaints that haven't been addressed within the expected timeframe." data-hi="उन शिकायतों के लिए अनुस्मारक भेजें जिन पर अपेक्षित समयसीमा के भीतर कार्रवाई नहीं की गई है।">Send reminders for complaints that haven't been addressed within the expected timeframe.</p>
+                </div>
+                
+                <div class="input-group">
+                    <label for="reminderComplaintId" data-en="Complaint ID" data-hi="शिकायत आईडी">Complaint ID</label>
+                    <input type="text" id="reminderComplaintId" data-en-placeholder="Enter complaint ID (e.g., CC2024001)" data-hi-placeholder="शिकायत आईडी दर्ज करें (जैसे, CC2024001)" placeholder="Enter complaint ID (e.g., CC2024001)">
+                </div>
+                
+                <div class="input-group">
+                    <label for="reminderMessage" data-en="Additional Message (Optional)" data-hi="अतिरिक्त संदेश (वैकल्पिक)">Additional Message (Optional)</label>
+                    <textarea id="reminderMessage" data-en-placeholder="Add any additional information..." data-hi-placeholder="कोई अतिरिक्त जानकारी जोड़ें..." placeholder="Add any additional information..." rows="3"></textarea>
+                </div>
+                
+                <button class="btn btn-primary btn-full" onclick="sendReminder()">
+                    <i class="fas fa-bell"></i>
+                    <span data-en="Send Reminder" data-hi="अनुस्मारक भेजें">Send Reminder</span>
+                </button>
+                
+                <div class="recent-reminders">
+                    <h3 data-en="Recent Reminders" data-hi="हाल की अनुस्मारक">Recent Reminders</h3>
+                    <div class="reminder-item">
+                        <div class="reminder-info">
+                            <p><strong>CC2024001</strong> - <span data-en="Pothole on Main Street" data-hi="मुख्य सड़क पर गड्ढा">Pothole on Main Street</span></p>
+                            <p class="reminder-date"><span data-en="Reminder sent:" data-hi="अनुस्मारक भेजा गया:">Reminder sent:</span> Jan 20, 2024</p>
+                        </div>
+                        <span class="reminder-status" data-en="Sent" data-hi="भेजा गया">Sent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Page -->
+    <div id="feedbackPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showUserDashboard()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</h2>
+            </div>
+            
+            <div class="feedback-content">
+                <div class="feedback-tabs">
+                    <button class="tab-btn active" onclick="showFeedbackTab('give')" data-en="Give Feedback" data-hi="प्रतिक्रिया दें">Give Feedback</button>
+                    <button class="tab-btn" onclick="showFeedbackTab('history')" data-en="Feedback History" data-hi="प्रतिक्रिया इतिहास">Feedback History</button>
+                </div>
+                
+                <div class="feedback-tab active" id="giveFeedbackTab">
+                    <form onsubmit="submitFeedback(event)">
+                        <div class="input-group">
+                            <label for="feedbackComplaintId" data-en="Complaint ID (Optional)" data-hi="शिकायत आईडी (वैकल्पिक)">Complaint ID (Optional)</label>
+                            <input type="text" id="feedbackComplaintId" data-en-placeholder="Enter complaint ID for specific feedback" data-hi-placeholder="विशिष्ट प्रतिक्रिया के लिए शिकायत आईडी दर्ज करें" placeholder="Enter complaint ID for specific feedback">
+                        </div>
+                        
+                        <div class="rating-section">
+                            <label data-en="Overall Experience" data-hi="समग्र अनुभव">Overall Experience</label>
+                            <div class="star-rating">
+                                <i class="fas fa-star" onclick="setRating(1)"></i>
+                                <i class="fas fa-star" onclick="setRating(2)"></i>
+                                <i class="fas fa-star" onclick="setRating(3)"></i>
+                                <i class="fas fa-star" onclick="setRating(4)"></i>
+                                <i class="fas fa-star" onclick="setRating(5)"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="feedbackCategory" data-en="Feedback Category" data-hi="प्रतिक्रिया श्रेणी">Feedback Category</label>
+                            <select id="feedbackCategory">
+                                <option value="service" data-en="Service Quality" data-hi="सेवा गुणवत्ता">Service Quality</option>
+                                <option value="response" data-en="Response Time" data-hi="प्रतिक्रिया समय">Response Time</option>
+                                <option value="resolution" data-en="Issue Resolution" data-hi="समस्या समाधान">Issue Resolution</option>
+                                <option value="app" data-en="App Experience" data-hi="ऐप अनुभव">App Experience</option>
+                                <option value="other" data-en="Other" data-hi="अन्य">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="feedbackText" data-en="Your Feedback" data-hi="आपकी प्रतिक्रिया">Your Feedback</label>
+                            <textarea id="feedbackText" data-en-placeholder="Share your experience and suggestions..." data-hi-placeholder="अपना अनुभव और सुझाव साझा करें..." placeholder="Share your experience and suggestions..." rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-en="Submit Feedback" data-hi="प्रतिक्रिया सबमिट करें">Submit Feedback</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="feedback-tab" id="feedbackHistoryTab">
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="rating-display">
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="feedback-date">Jan 18, 2024</span>
+                        </div>
+                        <p class="feedback-content" data-en="Great response time for pothole repair. The issue was resolved within 3 days of reporting." data-hi="गड्ढे की मरम्मत के लिए बेहतरीन प्रतिक्रिया समय। रिपोर्ट करने के 3 दिनों के भीतर समस्या हल हो गई।">Great response time for pothole repair. The issue was resolved within 3 days of reporting.</p>
+                        <p class="feedback-complaint"><span data-en="Complaint:" data-hi="शिकायत:">Complaint:</span> CC2024002</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="aboutUsPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showUserDashboard()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="About Us" data-hi="हमारे बारे में">About Us</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="app-info">
+                    <div class="app-logo-large">
+                        <i class="fas fa-city"></i>
+                        <h3>CivicConnect</h3>
+                        <p class="version" data-en="Version 1.0" data-hi="संस्करण 1.0">Version 1.0</p>
+                    </div>
+                    
+                    <div class="mission-section">
+                        <h4><i class="fas fa-bullseye"></i> <span data-en="Our Mission" data-hi="हमारा मिशन">Our Mission</span></h4>
+                        <p data-en="To bridge the gap between citizens and local government by providing an easy-to-use platform for reporting and tracking civic issues in real-time." data-hi="नागरिकों और स्थानीय सरकार के बीच की खाई को पाटना और रीयल-टाइम में नागरिक समस्याओं की रिपोर्टिंग और ट्रैकिंग के लिए एक आसान-से-उपयोग प्लेटफॉर्म प्रदान करना।">To bridge the gap between citizens and local government by providing an easy-to-use platform for reporting and tracking civic issues in real-time.</p>
+                    </div>
+                    
+                    <div class="features-section">
+                        <h4><i class="fas fa-list-check"></i> <span data-en="Key Features" data-hi="मुख्य विशेषताएं">Key Features</span></h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-camera"></i> <span data-en="Photo-based issue reporting" data-hi="फोटो-आधारित समस्या रिपोर्टिंग">Photo-based issue reporting</span></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <span data-en="Automatic location detection" data-hi="स्वचालित स्थान पहचान">Automatic location detection</span></li>
+                            <li><i class="fas fa-tracking-fast"></i> <span data-en="Real-time complaint tracking" data-hi="रीयल-टाइम शिकायत ट्रैकिंग">Real-time complaint tracking</span></li>
+                            <li><i class="fas fa-bell"></i> <span data-en="Reminder notifications" data-hi="अनुस्मारक सूचनाएं">Reminder notifications</span></li>
+                            <li><i class="fas fa-star"></i> <span data-en="Feedback and rating system" data-hi="प्रतिक्रिया और रेटिंग सिस्टम">Feedback and rating system</span></li>
+                            <li><i class="fas fa-mobile-alt"></i> <span data-en="Mobile-first responsive design" data-hi="मोबाइल-फर्स्ट रेस्पॉन्सिव डिज़ाइन">Mobile-first responsive design</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <h4><i class="fas fa-phone"></i> <span data-en="Contact Information" data-hi="संपर्क जानकारी">Contact Information</span></h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@civicconnect.gov</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>1800-CIVIC-HELP</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>www.civicconnect.gov</span>
+                        </div>
+                    </div>
+                    
+                    <div class="legal-section">
+                        <div class="legal-links">
+                            <a href="#" onclick="showPrivacyPolicy()" data-en="Privacy Policy" data-hi="गोपनीयता नीति">Privacy Policy</a>
+                            <a href="#" onclick="showTermsOfService()" data-en="Terms of Service" data-hi="सेवा की शर्तें">Terms of Service</a>
+                            <a href="#" onclick="showHelp()" data-en="Help & FAQ" data-hi="सहायता और FAQ">Help & FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Page -->
+    <div id="userDetailsPage" class="page">
+        <div class="form-container">
+            <div class="form-header">
+                <button class="back-btn" onclick="showUserDashboard()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 data-en="User Profile" data-hi="उपयोगकर्ता प्रोफ़ाइल">User Profile</h2>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                        <button class="change-photo-btn">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <h3 id="profileUserName">Devankit Yadav</h3>
+                    <p class="member-since" data-en="Member since Jan 2024" data-hi="जन 2024 से सदस्य">Member since Jan 2024</p>
+                </div>
+                
+                <form class="profile-form" onsubmit="updateProfile(event)">
+                    <div class="input-group">
+                        <label for="profileFullName" data-en="Full Name" data-hi="पूरा नाम">Full Name</label>
+                        <input type="text" id="profileFullName" value="Devankit Yadav">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profileEmail" data-en="Email Address" data-hi="ईमेल पता">Email Address</label>
+                        <input type="email" id="profileEmail" value="devankit@email.com">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profilePhone" data-en="Mobile Number" data-hi="मोबाइल नंबर">Mobile Number</label>
+                        <input type="tel" id="profilePhone" value="+91 9876543210">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profileAddress" data-en="Address" data-hi="पता">Address</label>
+                        <textarea id="profileAddress" rows="3">123 Main Street, Andheri West, Mumbai, Maharashtra 400058</textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profileCity" data-en="City" data-hi="शहर">City</label>
+                        <select id="profileCity">
+                            <option value="mumbai" selected>Mumbai</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="pune">Pune</option>
+                            <option value="other" data-en="Other" data-hi="अन्य">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="notification-preferences">
+                        <h4 data-en="Notification Preferences" data-hi="सूचना प्राथमिकताएं">Notification Preferences</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                            <span data-en="SMS notifications for complaint updates" data-hi="शिकायत अपडेट के लिए SMS सूचनाएं">SMS notifications for complaint updates</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                            <span data-en="Email notifications for important updates" data-hi="महत्वपूर्ण अपडेट के लिए ईमेल सूचनाएं">Email notifications for important updates</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span data-en="Weekly summary reports" data-hi="साप्ताहिक सारांश रिपोर्ट">Weekly summary reports</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-save"></i>
+                        <span data-en="Save Changes" data-hi="बदलाव सेव करें">Save Changes</span>
+                    </button>
+                </form>
+                
+                <div class="profile-stats">
+                    <h4 data-en="Your Activity" data-hi="आपकी गतिविधि">Your Activity</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="stat-info">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label" data-en="Complaints Filed" data-hi="शिकायतें दर्ज">Complaints Filed</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="stat-info">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label" data-en="Issues Resolved" data-hi="समस्याएं हल">Issues Resolved</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="stat-info">
+                                <span class="stat-number">2</span>
+                                <span class="stat-label" data-en="Pending" data-hi="लंबित">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="danger-zone">
+                    <h4 data-en="Account Actions" data-hi="खाता कार्य">Account Actions</h4>
+                    <button class="btn btn-outline-danger" onclick="changePassword()">
+                        <i class="fas fa-key"></i>
+                        <span data-en="Change Password" data-hi="पासवर्ड बदलें">Change Password</span>
+                    </button>
+                    <button class="btn btn-danger" onclick="deactivateAccount()">
+                        <i class="fas fa-user-times"></i>
+                        <span data-en="Deactivate Account" data-hi="खाता निष्क्रिय करें">Deactivate Account</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
